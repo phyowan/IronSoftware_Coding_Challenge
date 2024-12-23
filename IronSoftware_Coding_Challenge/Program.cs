@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+// testing on the given example in the challenge
 Console.WriteLine(OldPhonePad("333#"));
 Console.WriteLine(OldPhonePad("227 *#"));
 Console.WriteLine(OldPhonePad("333#"));
@@ -51,6 +52,7 @@ static string OldPhonePad(string input)
 
             if (key == prev_Key)
             {
+                //To keep track the same key how many times
                 tap_count++;
             }
             else
@@ -64,12 +66,21 @@ static string OldPhonePad(string input)
                 string chars = keymap[key];
                 if (tap_count == 2 || tap_count == 3 || key == '*')
                 {
+                    //keymap.Add('2', "ABC");
+                    //to get the second or third charactor of the string based on tap_count
+                    //if 22 , it will get B
+                    //if 222 , it will get C
+                    // And assign the value to output
                     output = output + chars.Substring(tap_count - 1, 1);
                     StringBuilder sb = new StringBuilder(output);
                     int index = sb.Length - 2;
                     if (index >= 0)
                     {
+                        //This removal is to handle the input scenario such as 22 or 222
+                        //because previously the first charctor of the key was assigned to the output
+                        //it is needed to remove it from the output
                         sb.Remove(index, 1);
+                        //after removing the value, assign the remaining value back to output
                         output = sb.ToString();
                     }
                     
@@ -77,7 +88,10 @@ static string OldPhonePad(string input)
                 }
                 else if (tap_count == 1)
                 {
-                    
+                    //keymap.Add('2', "ABC");
+                    //to get the first charactor of the string
+                    //if the input is 2, it will get A
+                    //and assign it to the output
                     output = output + chars.Substring(tap_count - 1, 1);
                 }
                  
